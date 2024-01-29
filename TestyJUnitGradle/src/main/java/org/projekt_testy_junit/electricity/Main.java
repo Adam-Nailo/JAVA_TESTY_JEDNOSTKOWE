@@ -1,4 +1,4 @@
-package org.projekt_testy_junit;
+package org.projekt_testy_junit.electricity;
 
 /**
  * Created by Adam Seweryn
