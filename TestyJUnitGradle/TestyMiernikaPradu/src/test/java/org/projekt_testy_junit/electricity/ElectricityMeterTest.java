@@ -46,8 +46,11 @@ class ElectricityMeterTest {
 
     @Test
     void givenNewMeterWhenFirstAdditionThenProperCounter() {
+//        Given/Arrange
         ElectricityMeter electricityMeter = new ElectricityMeter();
+//        When/Act
         electricityMeter.addKwh(1);
+//        Then/Assert
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
     }
 
