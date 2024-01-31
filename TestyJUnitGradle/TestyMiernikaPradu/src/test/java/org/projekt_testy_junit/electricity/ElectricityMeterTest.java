@@ -57,6 +57,5 @@ class ElectricityMeterTest {
             electricityMeter.setCentsForKwh(90);
             electricityMeter.getHowMuchMoreExpensiveNormalIs();
         });
-
     }
 }
