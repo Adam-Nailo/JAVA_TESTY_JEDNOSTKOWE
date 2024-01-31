@@ -16,6 +16,7 @@ class ElectricityMeterTest {
         electricityMeter.addKwh(1);
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
     }
+
     @Test
     void addKwh_newMeter2_properAddition() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
@@ -23,6 +24,7 @@ class ElectricityMeterTest {
         electricityMeter.addKwh(4);
         Assertions.assertTrue(electricityMeter.getKWh() == 5);
     }
+
     @Test
     void addKwh_newMeter5_properAddition() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
@@ -33,16 +35,28 @@ class ElectricityMeterTest {
         electricityMeter.addKwh(4);
         Assertions.assertTrue(electricityMeter.getKWh() == 17);
     }
+
     @Test
     void kwhCounterIncreaseIfNew() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
         electricityMeter.addKwh(1);
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
     }
+
     @Test
     void givenNewMeterWhenFirstAdditionThenProperCounter() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
         electricityMeter.addKwh(1);
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
+    }
+
+    @Test
+    void getHowMuchMoreExpensiveNormalIs() {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            ElectricityMeter electricityMeter = new ElectricityMeter();
+            electricityMeter.setCentsForKwh(90);
+            electricityMeter.getHowMuchMoreExpensiveNormalIs();
+        });
+
     }
 }
