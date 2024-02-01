@@ -4,16 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Created by Adam Seweryn
  */
-public class ElectricityMeterTest {
+public class TwoElectricityMetersTest {
 
     @Test
     void addKwh_newMeter_properAddition() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
+        ElectricityMeter electricityMeter1 = new ElectricityMeter();
         electricityMeter.addKwh(1);
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
     }
@@ -21,6 +20,7 @@ public class ElectricityMeterTest {
     @Test
     void addKwh_newMeter2_properAddition() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
+        ElectricityMeter electricityMeter1 = new ElectricityMeter();
         electricityMeter.addKwh(1);
         electricityMeter.addKwh(3);
         Assertions.assertTrue(electricityMeter.getKWh() == 5);
@@ -29,6 +29,7 @@ public class ElectricityMeterTest {
     @Test
     void addKwh_newMeter5_properAddition() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
+        ElectricityMeter electricityMeter1 = new ElectricityMeter();
         electricityMeter.addKwh(1);
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
@@ -40,6 +41,7 @@ public class ElectricityMeterTest {
     @Test
     void kwhCounterIncreaseIfNew() {
         ElectricityMeter electricityMeter = new ElectricityMeter();
+        ElectricityMeter electricityMeter1 = new ElectricityMeter();
         electricityMeter.addKwh(1);
         Assertions.assertTrue(electricityMeter.getKWh() == 1);
     }
@@ -48,6 +50,7 @@ public class ElectricityMeterTest {
     void givenNewMeterWhenFirstAdditionThenProperCounter() {
 //        Given/Arrange
         ElectricityMeter electricityMeter = new ElectricityMeter();
+        ElectricityMeter electricityMeter1 = new ElectricityMeter();
 //        When/Act
         electricityMeter.addKwh(1);
 //        Then/Assert
@@ -58,6 +61,7 @@ public class ElectricityMeterTest {
     void getHowMuchMoreExpensiveNormalIs() {
         Assertions.assertThrows(ArithmeticException.class, () -> {
             ElectricityMeter electricityMeter = new ElectricityMeter();
+            ElectricityMeter electricityMeter1 = new ElectricityMeter();
             electricityMeter.setCentsForKwh(90);
             electricityMeter.getHowMuchMoreExpensiveNormalIs();
         });
