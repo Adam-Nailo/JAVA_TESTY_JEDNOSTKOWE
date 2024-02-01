@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Created by Adam Seweryn
  */
-public class TwoElectricityMetersTest {
+class TwoElectricityMetersTest {
 
     @Test
     void addKwh_newMeter_properAddition() {

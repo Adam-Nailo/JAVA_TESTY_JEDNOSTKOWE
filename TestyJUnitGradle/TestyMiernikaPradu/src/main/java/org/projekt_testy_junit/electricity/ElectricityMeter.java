@@ -49,4 +49,13 @@ public class ElectricityMeter {
         return (centsForKwh * 100 / centsForKwhTariff) - 100;
     }
 
+    public void reset() {
+        this.kWh = 0;
+        this.centsForKwh = 0;
+        this.tariffOn = false;
+        this.kWhTariff = 0;
+        this.centsForKwhTariff = 0;
+        this.electricityTariffStartHour = 0;
+        this.electricityTariffEndHour = 0;
+    }
 }
