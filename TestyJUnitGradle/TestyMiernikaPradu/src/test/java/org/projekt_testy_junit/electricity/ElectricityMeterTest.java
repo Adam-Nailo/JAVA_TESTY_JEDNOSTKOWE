@@ -1,5 +1,6 @@
 package org.projekt_testy_junit.electricity;
 
+import org.junit.AfterClass;
 import org.junit.jupiter.api.*;
 
 /**
@@ -17,6 +18,16 @@ class ElectricityMeterTest {
     @BeforeEach
     void setUp() {
         electricityMeter.reset();
+
+    }
+
+    @AfterAll
+    public static void release() {
+
+    }
+
+    @AfterEach
+    void tearDown() {
 
     }
 
