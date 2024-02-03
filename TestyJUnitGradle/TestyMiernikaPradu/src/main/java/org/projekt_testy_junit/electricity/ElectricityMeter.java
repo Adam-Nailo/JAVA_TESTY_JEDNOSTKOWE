@@ -20,6 +20,8 @@ public class ElectricityMeter {
 
     @Setter(AccessLevel.PACKAGE)
     private boolean tariffOn = false;
+
+    @Getter
     private float kWhTariff = 0;
 
     @Setter(AccessLevel.PACKAGE)
