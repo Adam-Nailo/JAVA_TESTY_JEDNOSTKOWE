@@ -12,6 +12,8 @@ import java.util.Calendar;
 
 public class ElectricityMeter {
 
+    TariffProvider tp;
+
     @Getter
     private float kWh = 0;
 
@@ -33,6 +35,21 @@ public class ElectricityMeter {
     @Setter(AccessLevel.PACKAGE)
     private int electricityTariffEndHour = 0;
 
+    public ElectricityMeter() {
+        tp = new TariffProvider() {
+            @Override
+            public boolean isTariffNow() {
+                Calendar rightNow = Calendar.getInstance();
+                int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+                return hour > electricityTariffStartHour && hour < electricityTariffEndHour;
+            }
+        };
+    }
+
+    public ElectricityMeter(TariffProvider tp) {
+        this.tp = tp;
+    }
+
     public void addKwh(float kWhToAdd) {
         if (isTariffNow()) {
             kWhTariff += kWhToAdd;
@@ -42,9 +59,7 @@ public class ElectricityMeter {
     }
 
     private boolean isTariffNow() {
-        Calendar rightNow = Calendar.getInstance();
-        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-        return hour > electricityTariffStartHour && hour < electricityTariffEndHour;
+        return tp.isTariffNow();
     }
 
     public int getHowMuchMoreExpensiveNormalIs() {

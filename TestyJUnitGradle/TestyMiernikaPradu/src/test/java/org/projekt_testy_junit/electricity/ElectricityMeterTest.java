@@ -1,7 +1,6 @@
 package org.projekt_testy_junit.electricity;
 
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 
 /**
  * Created by Adam Seweryn
