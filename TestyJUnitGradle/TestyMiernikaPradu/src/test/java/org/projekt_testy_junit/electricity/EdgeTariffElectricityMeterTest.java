@@ -1,7 +1,9 @@
 package org.projekt_testy_junit.electricity;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,29 +20,37 @@ public class EdgeTariffElectricityMeterTest {
     static TariffProvider tp;
 
     @BeforeAll
-    static void setUp() {
+    static void init() {
         tp = Mockito.mock(TariffProvider.class);
         electricityMeter = new ElectricityMeter(tp);
         electricityMeter.setTariffOn(true);
+    }
+    @BeforeEach
+    void setUp() {
+
 
     }
-
     @ParameterizedTest
     @MethodSource("inputData")
     public void GivenDependOnTariffWhenKwhAdditionThenSpecificCounterIsIncreased(int kwhUsedInCase, boolean isTariffInCase, float sumKwhInCase, float sumKwhTariffInCase) {
 //        Given
         Mockito.when(tp.isTariffNow()).thenReturn(isTariffInCase);
 //        When
-        electricityMeter.addKwh(kwhUsedInCase);
+        electricityMeter.addKwhNotTariff(kwhUsedInCase);
 //        Then
-
-        if (isTariffInCase) {
-
-            Assertions.assertEquals(sumKwhInCase, electricityMeter.getKWh(), 0.01);
-        } else {
-
-            Assertions.assertEquals(sumKwhTariffInCase, electricityMeter.getKWhTariff(), 0.01);
-        }
+        Assumptions.assumeFalse(isTariffInCase);
+        Assertions.assertEquals(sumKwhInCase, electricityMeter.getKWh(), 0.01);
+    }
+    @ParameterizedTest
+    @MethodSource("inputData")
+    public void GivenDependOnTariffWhenKwhAdditionThenTariffCounterIsIncreased(int kwhUsedInCase, boolean isTariffInCase, float sumKwhInCase, float sumKwhTariffInCase) {
+//        Given
+        Mockito.when(tp.isTariffNow()).thenReturn(isTariffInCase);
+//        When
+        electricityMeter.addKwhTariff(kwhUsedInCase);
+//        Then
+        Assumptions.assumeTrue(isTariffInCase);
+        Assertions.assertEquals(sumKwhTariffInCase, electricityMeter.getKWhTariff(), 0.01);
     }
 
     public static Stream<Arguments> inputData() {

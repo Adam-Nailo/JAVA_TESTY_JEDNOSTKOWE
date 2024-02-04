@@ -57,6 +57,17 @@ public class ElectricityMeter {
             kWh += kWhToAdd;
         }
     }
+    public void addKwhTariff(float kWhToAdd) {
+        if (isTariffNow()) {
+            kWhTariff += kWhToAdd;
+        }
+    }
+
+    public void addKwhNotTariff(float kWhToAdd) {
+        if (!isTariffNow()) {
+            kWh += kWhToAdd;
+        }
+    }
 
     private boolean isTariffNow() {
         return tp.isTariffNow();
